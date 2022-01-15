@@ -9,10 +9,6 @@ import ContactsList from '../ContactsList/ContactsList';
 import styles from './Phonebook.module.scss';
 
 class Phonebook extends React.Component {
-  static defaultsProps = {};
-
-  static propTypes = {};
-
   state = {
     contacts: [
       { id: 'id-1', name: 'Rosie Simpson', number: '459-12-56' },
