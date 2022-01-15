@@ -19,10 +19,26 @@ class Phonebook extends React.Component {
     filter: '',
   };
 
+  // formSubmitHandler = data => {
+  //   this.state.contacts.find(contact => contact.name === data.name)
+  //     ? alert(`${data.name} is already in contacts`)
+  //     : this.setState(({ contacts }) => ({ contacts: [data, ...contacts] }));
+  // };
+
+  getContactNames = () => {
+    return this.state.contacts.map(contact => contact.name.toLowerCase());
+  };
+
   formSubmitHandler = data => {
-    this.state.contacts.find(contact => contact.name === data.name)
-      ? alert(`${data.name} is already in contacts`)
-      : this.setState(({ contacts }) => ({ contacts: [data, ...contacts] }));
+    const existingNames = this.getContactNames();
+
+    if (existingNames.includes(data.name.toLowerCase())) {
+      alert(`${data.name} is already in contacts`);
+    } else {
+      this.setState(prevState => ({
+        contacts: [data, ...prevState.contacts],
+      }));
+    }
   };
 
   handleSearch = event => {
